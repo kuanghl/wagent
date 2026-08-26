@@ -12,7 +12,8 @@ RUN for i in 1 2 3; do \
     rm -rf /var/lib/apt/lists/*
 
 # DEPENDENCIES #################################################################
-RUN DEBIAN_FRONTEND=noninteractive apt install -y \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt install -y \
         wget \
         curl \
         git \
