@@ -43,7 +43,7 @@ jobs:
       # test it. Every layer is written to the GHA cache, so the multi-platform
       # push below reuses this exact build instead of starting over.
       - name: Build image (linux/amd64, local)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64
@@ -57,7 +57,7 @@ jobs:
 
       - name: Push multi-platform image
         if: ${{ github.ref == 'refs/heads/master' }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64,linux/arm64
