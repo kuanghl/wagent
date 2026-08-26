@@ -1,0 +1,11 @@
+name: "Trigger Probe"
+
+on: push
+
+jobs:
+  probe:
+    name: "Probe"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping
+        run: echo "probe triggered"
