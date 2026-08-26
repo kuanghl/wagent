@@ -1,4 +1,4 @@
-DOCKER_IMAGE=kaunghl98/agent-docker
+DOCKER_IMAGE=kaunghl98/wagent
 DOCKER_TAG?=latest
 DOCKER_PLATFORMS?=linux/amd64
 

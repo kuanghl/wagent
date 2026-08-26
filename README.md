@@ -5,8 +5,8 @@
 </p>
 
 <p align=center>
-  <a href="https://github.com/kuanghl/agent-docker/actions"><img src="https://github.com/kuanghl/agent-docker/actions/workflows/docker.yml/badge.svg"></a>
-  <a href="https://hub.docker.com/r/kaunghl98/agent-docker/"><img src="https://badgen.net/docker/pulls/kaunghl98/agent-docker"></a>
+  <a href="https://github.com/kuanghl/wagent/actions"><img src="https://github.com/kuanghl/agent-docker/actions/workflows/docker.yml/badge.svg"></a>
+  <a href="https://hub.docker.com/r/kaunghl98/wagent/"><img src="https://badgen.net/docker/pulls/kaunghl98/wagent"></a>
 </p>
 
 ------
@@ -54,7 +54,7 @@ Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub & 
 docker run \
     --rm \
     -it \
-    kaunghl98/agent-docker:latest
+    kaunghl98/wagent:latest
 ```
 
 ## ENV(s)
@@ -78,5 +78,5 @@ Default user is `root`.
 
 Issues and pull requests are welcome at
 [github.com/kuanghl/agent-docker](https://github.com/kuanghl/agent-docker).
-Images are published to [hub.docker.com/r/kaunghl98/agent-docker](https://hub.docker.com/r/kaunghl98/agent-docker)
+Images are published to [hub.docker.com/r/kaunghl98/wagent](https://hub.docker.com/r/kaunghl98/wagent)
 on every push to `master` and on the 1st day of each month.
