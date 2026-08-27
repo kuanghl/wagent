@@ -1,4 +1,4 @@
-FROM ubuntu:24.04-slim
+FROM ubuntu:24.04
 
 ENV PATH=/root/bin:/root/.bun/bin:/root/.deno/bin:/root/.local/bin:$PATH
 
