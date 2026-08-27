@@ -17,6 +17,7 @@ RUN apt-get update && \
         wget \
         curl \
         git \
+        make \
         ca-certificates \
         gnupg \
         lsb-release \
