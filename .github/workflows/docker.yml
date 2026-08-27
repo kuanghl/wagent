@@ -3,8 +3,8 @@ name: Docker
 on:
   workflow_dispatch:
   push:
-  schedule:
-    - cron: "0 8 * * 1"
+  schedule: # Minute Hour Date Month Weekday
+    - cron: "0 16 1 * *" # Run on the 1st of every month at 16:00 AM UTC +8 --> 0:00 AM CST
 
 permissions:
   contents: read
@@ -46,7 +46,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           docker pull ${{ env.IMAGE }}:latest --platform linux/amd64
-          docker run --rm --platform linux/amd64 ${{ env.IMAGE }}:latest make test
+          make test
 
   docs:
     name: Update Docker Hub description
