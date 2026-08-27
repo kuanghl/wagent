@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:24.04-slim
 
 ENV PATH=/root/bin:/root/.bun/bin:/root/.deno/bin:/root/.local/bin:$PATH
 
@@ -63,7 +63,8 @@ RUN npm install -g @anthropic-ai/claude-code
 RUN curl https://cursor.com/install -fsS | bash
 
 # CODEX CLI ####################################################################
-RUN npm install -g @openai/codex
+RUN npm install -g @openai/codex && \
+    codex --version
 
 # GEMINI CLI ###################################################################
 RUN npm install -g @google/gemini-cli
