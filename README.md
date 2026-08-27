@@ -5,7 +5,7 @@
 </p>
 
 <p align=center>
-  <a href="https://github.com/kuanghl/wagent/actions"><img src="https://github.com/kuanghl/agent-docker/actions/workflows/docker.yml/badge.svg"></a>
+  <a href="https://github.com/kuanghl/wagent/actions"><img src="https://github.com/kuanghl/wagent/actions/workflows/docker.yml/badge.svg"></a>
   <a href="https://hub.docker.com/r/kaunghl98/wagent/"><img src="https://badgen.net/docker/pulls/kaunghl98/wagent"></a>
 </p>
 
