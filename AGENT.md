@@ -28,6 +28,7 @@ exact version of any tool in the running container.
 | `pi`                  | Pi coding agent CLI (`pi-mono`)         |
 | `grok`                | Grok Build CLI (xAI)                    |
 | `qodercli`, `qoder`   | Qoder CLI                               |
+| `qoderclicn`          | Qoder CN CLI                            |
 | `openclaw`            | OpenClaw personal AI assistant gateway  |
 | `agy`                 | Antigravity CLI (Google)                |
 

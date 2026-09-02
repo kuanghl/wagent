@@ -1,7 +1,7 @@
-<h1 align=center>kuanghl / agent-docker</h1>
+<h1 align=center>kuanghl / wagent</h1>
 
 <p align=center>
-   🎁 Dockerized stack for vibing. Claude Code, Codex, Gemini CLI and 12+ other AI coding agents, on top of Node.js, Bun, Deno, GitHub/GitLab CLI and development tools.
+  Dockerized stack for vibing. Claude Code, Codex, Gemini CLI and 12+ other AI coding agents, on top of Node.js, Bun, Deno, GitHub/GitLab CLI and development tools.
 </p>
 
 <p align=center>
@@ -38,6 +38,7 @@ Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub & 
 - Pi coding agent CLI (`pi`) - pi-mono
 - Grok Build CLI (`grok`) - xAI
 - Qoder CLI (`qodercli`, `qoder`) - Qoder
+- Qoder CN CLI (`qoderclicn`) - Qoder CN
 - OpenClaw (`openclaw`) - personal AI assistant gateway
 - Antigravity CLI (`agy`) - Google
 
@@ -77,6 +78,6 @@ Default user is `root`.
 ## Maintenance
 
 Issues and pull requests are welcome at
-[github.com/kuanghl/agent-docker](https://github.com/kuanghl/agent-docker).
+[github.com/kuanghl/wagent](https://github.com/kuanghl/wagent).
 Images are published to [hub.docker.com/r/kaunghl98/wagent](https://hub.docker.com/r/kaunghl98/wagent)
 on every push to `master` and on the 1st day of each month.

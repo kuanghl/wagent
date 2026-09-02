@@ -99,6 +99,9 @@ RUN curl -fsSL https://x.ai/cli/install.sh | bash
 # QODER CLI ####################################################################
 RUN npm install -g @qoder-ai/qodercli
 
+# QODER CN CLI ####################################################################
+RUN npm install -g @qodercn-ai/qoderclicn
+
 # OPENCLAW #####################################################################
 # npm >= 11.16 requires --allow-scripts=openclaw for its lifecycle scripts;
 # older npm versions reject the flag, so fall back to a plain install.
