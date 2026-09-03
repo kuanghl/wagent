@@ -227,6 +227,10 @@ main {
   margin: 3rem 0;
 }
 
+.docker-section {
+  margin: 4rem 0;
+}
+
 .terminal-window {
   background: var(--bg-secondary);
   border: 1px solid var(--border);

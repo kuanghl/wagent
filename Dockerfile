@@ -99,8 +99,17 @@ RUN curl -fsSL https://x.ai/cli/install.sh | bash
 # QODER CLI ####################################################################
 RUN npm install -g @qoder-ai/qodercli
 
-# QODER CN CLI ####################################################################
+# QODER CN CLI #################################################################
 RUN npm install -g @qodercn-ai/qoderclicn
+
+# kilo code CLI ################################################################
+RUN npm install -g @kilocode/cli
+
+# oh-my-pi CLI #################################################################
+RUN bun install -g @oh-my-pi/pi-coding-agent
+
+# hermes-agent CLI #############################################################
+RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
 # OPENCLAW #####################################################################
 # npm >= 11.16 requires --allow-scripts=openclaw for its lifecycle scripts;

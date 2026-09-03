@@ -48,6 +48,10 @@ _testcase-agents:
 	$(TEST_RUN) pi --version
 	$(TEST_RUN) grok --version
 	$(TEST_RUN) qodercli --version
+	$(TEST_RUN) qoderclicn --version
+	$(TEST_RUN) kilocode --version
+	$(TEST_RUN) omp --version
+	$(TEST_RUN) hermes --version
 	$(TEST_RUN) openclaw --version
 	$(TEST_RUN) agy --version
 

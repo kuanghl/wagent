@@ -79,6 +79,43 @@
       </div>
     </section>
 
+    <section class="docker-section">
+      <div class="section-header">
+        <span class="section-prompt">></span>
+        <span class="section-title">man wagent</span>
+      </div>
+
+      <p class="hero-description">
+        Prefer a container? <span class="highlight">kaunghl98/wagent</span> ships 19 AI coding agents with Node.js 24, Bun, Deno, gh/glab and dev tools — nothing pinned, every build pulls the latest upstream.
+      </p>
+
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">docker run</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span class="command">docker run --rm -it kaunghl98/wagent:latest</span>
+          </div>
+          <div class="terminal-output success" id="dockerOutput">
+            <span class="output-line">[OK] Pulling kaunghl98/wagent:latest</span>
+            <span class="output-line">[OK] 19 agents + node bun deno gh glab ready</span>
+            <span class="output-line highlight">>>> vibestack up in /workspace</span>
+          </div>
+        </div>
+        <button class="copy-btn" id="dockerCopyBtn" title="Copy to clipboard">
+          <span class="copy-icon">[COPY]</span>
+          <span class="copy-feedback" id="dockerCopyFeedback">COPIED!</span>
+        </button>
+      </div>
+
+      <div class="agents-grid" id="dockerAgentsGrid"></div>
+    </section>
+
     <section class="tag-install-section">
       <div class="section-header">
         <span class="section-prompt">></span>

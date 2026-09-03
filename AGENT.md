@@ -5,9 +5,10 @@ Default working directory is `/workspace`; the repository you work on is
 usually mounted there.
 
 Nothing is pinned: every build pulls the newest release from upstream.
-npm packages are installed unversioned, runtime CLIs (Bun, Deno) and
-installer-script tools (Cursor, Kimi Code, Grok Build, Antigravity) use
-their official installers, and `gh` / `glab` come from their official apt
+npm and bun packages are installed unversioned, runtime CLIs (Bun, Deno)
+and installer-script tools (Cursor, Kimi Code, Grok Build, Hermes Agent,
+Antigravity) use their official installers, and `gh` / `glab` come from
+their official apt
 repository and latest-release feed. Run `<command> --version` to check the
 exact version of any tool in the running container.
 
@@ -29,6 +30,9 @@ exact version of any tool in the running container.
 | `grok`                | Grok Build CLI (xAI)                    |
 | `qodercli`, `qoder`   | Qoder CLI                               |
 | `qoderclicn`          | Qoder CN CLI                            |
+| `kilocode`, `kilo`    | Kilo Code CLI (kilo-org)                |
+| `omp`                 | oh-my-pi coding agent CLI               |
+| `hermes`              | Hermes Agent CLI (Nous Research)        |
 | `openclaw`            | OpenClaw personal AI assistant gateway  |
 | `agy`                 | Antigravity CLI (Google)                |
 

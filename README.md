@@ -1,7 +1,7 @@
 <h1 align=center>kuanghl / wagent</h1>
 
 <p align=center>
-  Dockerized stack for vibing. Claude Code, Codex, Gemini CLI and 12+ other AI coding agents, on top of Node.js, Bun, Deno, GitHub/GitLab CLI and development tools.
+  Dockerized stack for vibing. Claude Code, Codex, Gemini CLI and 15+ other AI coding agents, on top of Node.js, Bun, Deno, GitHub/GitLab CLI and development tools.
 </p>
 
 <p align=center>
@@ -39,6 +39,9 @@ Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub & 
 - Grok Build CLI (`grok`) - xAI
 - Qoder CLI (`qodercli`, `qoder`) - Qoder
 - Qoder CN CLI (`qoderclicn`) - Qoder CN
+- Kilo Code CLI (`kilocode`, `kilo`) - Kilo Code
+- oh-my-pi CLI (`omp`) - oh-my-pi
+- Hermes Agent CLI (`hermes`) - Nous Research
 - OpenClaw (`openclaw`) - personal AI assistant gateway
 - Antigravity CLI (`agy`) - Google
 

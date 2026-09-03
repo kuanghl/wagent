@@ -319,6 +319,14 @@ const agents = [
   'Kiro CLI', 'OpenCode', 'Roo', 'Trae', 'VSCode', 'and more...'
 ];
 
+const dockerAgents = [
+  'claude', 'cursor-agent', 'codex', 'gemini', 'opencode', 'copilot', 'cline',
+  'codebuddy', 'kimi', 'dsh', 'pi', 'grok', 'qodercli', 'qoderclicn',
+  'kilocode', 'omp', 'hermes', 'openclaw', 'agy',
+];
+
+const dockerRunCmd = 'docker run --rm -it kaunghl98/wagent:latest';
+
 const steps = [
   { num: '01', text: 'Fork the repo' },
   { num: '02', text: 'Create skill in <code>skills/</code>' },
@@ -496,6 +504,12 @@ function renderAgents() {
   grid.innerHTML = agents.map(agent => `<span class="agent-pill">${agent}</span>`).join('');
 }
 
+function renderDockerAgents() {
+  const grid = document.getElementById('dockerAgentsGrid');
+  if (!grid) return;
+  grid.innerHTML = dockerAgents.map(agent => `<span class="agent-pill">${agent}</span>`).join('');
+}
+
 function renderSteps() {
   const container = document.getElementById('stepsContainer');
   container.innerHTML = steps.map(step => `
@@ -533,8 +547,21 @@ function setupCopy() {
   });
 }
 
-function animateInstallOutput() {
-  const output = document.getElementById('installOutput');
+function setupDockerCopy() {
+  const btn = document.getElementById('dockerCopyBtn');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText(dockerRunCmd).then(() => {
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    });
+  });
+}
+
+function animateInstallOutput(outputId = 'installOutput') {
+  const output = document.getElementById(outputId);
+  if (!output) return;
   const lines = output.querySelectorAll('.output-line');
 
   lines.forEach((line, i) => {
@@ -556,9 +583,12 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCategoryTabs();
   renderSkills();
   renderAgents();
+  renderDockerAgents();
   renderSteps();
   renderTree();
   setupTabs();
   setupCopy();
-  animateInstallOutput();
+  setupDockerCopy();
+  animateInstallOutput('installOutput');
+  animateInstallOutput('dockerOutput');
 });
