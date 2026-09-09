@@ -86,3 +86,4 @@ Images are published to [hub.docker.com/r/kaunghl98/wagent](https://hub.docker.c
 on every push to `master` and on the 1st day of each month.
 [low-level-dev-skills](https://github.com/mohitmishra786/low-level-dev-skills.git): fork from `mohitmishra786/low-level-dev-skills`.
 [skills.sh](https://github.com/vercel-labs/skills.git): The open agent skills tool - npx skills.
+[wg-skills](https://github.com/jiushiwon/wg-skills.git): fork from `jiushiwon/wg-skills`.
