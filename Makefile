@@ -149,4 +149,5 @@ _testcase-mini-common:
 	$(TEST_RUN_MINI) bwrap --version
 	$(TEST_RUN_MINI) unzip -v
 	$(TEST_RUN_MINI) zip -v
+	$(TEST_RUN_MINI) nano --version
 	$(TEST_RUN_MINI) test -s /root/AGENT.md

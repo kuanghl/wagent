@@ -30,6 +30,7 @@ RUN apt-get update && \
         procps \
         unzip \
         zip \
+        nano \
         bubblewrap && \
     # Debian/Ubuntu ship fd as fdfind to avoid a name clash
     ln -s "$(command -v fdfind)" /usr/local/bin/fd && \
@@ -137,6 +138,9 @@ RUN ARCH=$(case $(dpkg --print-architecture) in \
     tar -xzf "glab_${GLAB_VERSION}_${ARCH}.tar.gz" && \
     rm "glab_${GLAB_VERSION}_${ARCH}.tar.gz" && \
     mv bin/glab /usr/local/bin
+
+# CACHE CLEANUP ################################################################
+RUN npm cache clean --force
 
 # AGENT DOCS ###################################################################
 COPY AGENT.md /root/AGENT.md

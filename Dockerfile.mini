@@ -31,6 +31,7 @@ RUN apt-get update && \
         procps \
         unzip \
         zip \
+        nano \
         bubblewrap && \
     # Debian/Ubuntu ship fd as fdfind to avoid a name clash
     ln -s "$(command -v fdfind)" /usr/local/bin/fd && \
