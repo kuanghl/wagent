@@ -48,9 +48,43 @@ jobs:
           docker pull ${{ env.IMAGE }}:latest --platform linux/amd64
           make test
 
+  build-publish-mini:
+    name: Build & Publish (Mini)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Login to Docker Hub
+        if: github.ref == 'refs/heads/master'
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push mini multi-platform
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: Dockerfile.mini
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.ref == 'refs/heads/master' }}
+          tags: ${{ env.IMAGE }}:mini
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: BUILDKIT_INLINE_CACHE=1
+
+      - name: Smoke test mini (pull & run)
+        if: github.ref == 'refs/heads/master'
+        run: |
+          docker pull ${{ env.IMAGE }}:mini --platform linux/amd64
+          make test-mini
+
   docs:
     name: Update Docker Hub description
-    needs: build-publish
+    needs: [build-publish, build-publish-mini]
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:

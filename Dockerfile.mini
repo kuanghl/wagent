@@ -1,0 +1,137 @@
+FROM ubuntu:24.04
+
+# pnpm installs into a single project; expose its .bin so every CLI is callable.
+ENV PATH=/root/bin:/opt/ai-tools/node_modules/.bin:/root/.bun/bin:/root/.deno/bin:/root/.local/bin:$PATH
+
+# INSTALLATION #################################################################
+RUN for i in 1 2 3; do \
+        rm -rf /var/lib/apt/lists/* && \
+        apt-get update -o Acquire::Retries=5 && break || \
+        sleep 20; \
+    done && \
+    apt-get dist-upgrade -y -o Dpkg::Options::="--force-confdef" && \
+    rm -rf /var/lib/apt/lists/*
+
+# DEPENDENCIES #################################################################
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt install -y \
+        wget \
+        curl \
+        git \
+        vim \
+        ca-certificates \
+        gnupg \
+        lsb-release \
+        openssh-client \
+        jq \
+        ripgrep \
+        fd-find \
+        tree \
+        less \
+        procps \
+        unzip \
+        zip \
+        bubblewrap && \
+    # Debian/Ubuntu ship fd as fdfind to avoid a name clash
+    ln -s "$(command -v fdfind)" /usr/local/bin/fd && \
+    # CLEAN UP #################################################################
+    apt-get clean -y && \
+    apt-get autoclean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*
+
+# NODE.JS / PNPM / GITHUB CLI #################################################
+# Node.js from NodeSource (LTS 24 line), gh from its official apt repository;
+# pnpm is enabled via Corepack so its version tracks the Node LTS line.
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
+    chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli-stable.list && \
+    apt update && \
+    apt install -y nodejs gh && \
+    corepack enable && \
+    corepack prepare pnpm@latest --activate && \
+    rm -rf /var/lib/apt/lists/*
+
+# AI CLIs (pnpm project install) ###############################################
+# All npm-distributed AI CLIs live in ONE pnpm project. Their shared transitive
+# deps (commander, chalk, openai SDK, ora, ...) are hard-linked from a single
+# content-addressable store instead of being duplicated per global package.
+# --dangerously-allow-all-builds is required because pnpm >=10 blocks dependency
+# lifecycle scripts by default (some CLIs download native binaries in postinstall).
+RUN mkdir -p /opt/ai-tools && cd /opt/ai-tools && \
+    echo '{"name":"ai-tools","version":"0.0.0","private":true}' > package.json && \
+    pnpm add --dangerously-allow-all-builds \
+        @anthropic-ai/claude-code \
+        @openai/codex \
+        @google/gemini-cli \
+        opencode-ai \
+        @github/copilot \
+        cline \
+        @tencent-ai/codebuddy-code \
+        @deepseek-ai/dsh \
+        @mariozechner/pi-coding-agent \
+        @qoder-ai/qodercli \
+        @qodercn-ai/qoderclicn \
+        @kilocode/cli \
+        @qwen-code/qwen-code && \
+    # Drop dangling store entries, package tarballs and build tmp; keep the
+    # store itself so the developer can `pnpm add` more tools later cheaply.
+    pnpm store prune && \
+    rm -rf /root/.npm /root/.cache/node /tmp/* /var/tmp/*
+
+# BUN ##########################################################################
+RUN curl -fsSL https://bun.sh/install | bash
+
+# oh-my-pi CLI (bun) ###########################################################
+# Kept on bun's global store on purpose: @oh-my-pi/pi-coding-agent is compiled
+# by bun and would be re-downloaded as a binary if installed through pnpm.
+RUN bun install -g @oh-my-pi/pi-coding-agent
+
+# DENO #########################################################################
+RUN curl -fsSL https://deno.land/install.sh | sh
+
+# KIMI CODE CLI (MOONSHOT AI) ##################################################
+# Installer defaults to $HOME/.kimi-code/bin, which is not on PATH in
+# non-interactive shells; point it at /usr/local instead.
+RUN curl -fsSL https://code.kimi.com/kimi-code/install.sh \
+        | KIMI_INSTALL_DIR=/usr/local bash
+
+# CURSOR CLI ###################################################################
+RUN curl https://cursor.com/install -fsS | bash
+
+# GROK BUILD CLI (XAI) #########################################################
+RUN curl -fsSL https://x.ai/cli/install.sh | bash
+
+# jcode CLI ####################################################################
+RUN curl -fsSL https://jcode.sh/install | bash
+
+# ANTIGRAVITY CLI (GOOGLE) #####################################################
+RUN curl -fsSL https://antigravity.google/cli/install.sh | bash
+
+# GITLAB CLI ###################################################################
+# Resolve the latest published release tag at build time.
+RUN ARCH=$(case $(dpkg --print-architecture) in \
+        arm64) echo "linux_arm64" ;; \
+        *) echo "linux_amd64" ;; \
+    esac) && \
+    GLAB_VERSION=$(curl -fsSL "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases" | jq -r ".[0].tag_name" | sed "s/^v//") && \
+    curl -OL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_${ARCH}.tar.gz" && \
+    tar -xzf "glab_${GLAB_VERSION}_${ARCH}.tar.gz" && \
+    rm "glab_${GLAB_VERSION}_${ARCH}.tar.gz" && \
+    mv bin/glab /usr/local/bin
+
+# hermes-agent CLI #############################################################
+# RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+
+# OPENCLAW #####################################################################
+# RUN pnpm add -g openclaw@latest   # replace with pnpm if reinstated
+
+# AGENT DOCS ###################################################################
+COPY AGENT.md /root/AGENT.md
+
+# WORKDIR ######################################################################
+WORKDIR /workspace
+
+CMD ["/bin/bash"]
