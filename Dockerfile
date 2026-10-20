@@ -61,32 +61,33 @@ RUN curl -fsSL https://deno.land/install.sh | sh
 # pnpm uses a content-addressable store, so packages shared across multiple
 # global installs are deduplicated on disk — a significant space saver vs npm.
 RUN npm install -g pnpm && \
-    pnpm config set global-bin-dir /root/.local/share/pnpm
+    pnpm config set global-bin-dir /root/.local/share/pnpm && \
+    pnpm config set ignore-scripts false
 
 # CLAUDE CODE ##################################################################
-RUN pnpm add -g --prod @anthropic-ai/claude-code
+RUN pnpm add -g --prod --config.ignore-scripts=false @anthropic-ai/claude-code
 
 # CURSOR CLI ###################################################################
 RUN curl https://cursor.com/install -fsS | bash
 
 # CODEX CLI ####################################################################
-RUN pnpm add -g --prod @openai/codex && \
+RUN pnpm add -g --prod --config.ignore-scripts=false @openai/codex && \
     codex --version
 
 # GEMINI CLI ###################################################################
-RUN pnpm add -g --prod @google/gemini-cli
+RUN pnpm add -g --prod --config.ignore-scripts=false @google/gemini-cli
 
 # OPENCODE CLI #################################################################
-RUN pnpm add -g --prod opencode-ai
+RUN pnpm add -g --prod --config.ignore-scripts=false opencode-ai
 
 # COPILOT CLI ##################################################################
-RUN pnpm add -g --prod @github/copilot
+RUN pnpm add -g --prod --config.ignore-scripts=false @github/copilot
 
 # CLINE CLI ####################################################################
-RUN pnpm add -g --prod cline
+RUN pnpm add -g --prod --config.ignore-scripts=false cline
 
 # CODEBUDDY CLI (TENCENT) ######################################################
-RUN pnpm add -g --prod @tencent-ai/codebuddy-code
+RUN pnpm add -g --prod --config.ignore-scripts=false @tencent-ai/codebuddy-code
 
 # KIMI CODE CLI (MOONSHOT AI) ##################################################
 # Installer defaults to $HOME/.kimi-code/bin, which is not on PATH in
@@ -95,22 +96,22 @@ RUN curl -fsSL https://code.kimi.com/kimi-code/install.sh \
         | KIMI_INSTALL_DIR=/usr/local bash
 
 # DEEPSEEK HARNESS CLI #########################################################
-RUN pnpm add -g --prod @deepseek-ai/dsh
+RUN pnpm add -g --prod --config.ignore-scripts=false @deepseek-ai/dsh
 
 # PI CODING AGENT CLI ##########################################################
-RUN pnpm add -g --prod @mariozechner/pi-coding-agent
+RUN pnpm add -g --prod --config.ignore-scripts=false @mariozechner/pi-coding-agent
 
 # GROK BUILD CLI (XAI) #########################################################
 RUN curl -fsSL https://x.ai/cli/install.sh | bash
 
 # QODER CLI ####################################################################
-RUN pnpm add -g --prod @qoder-ai/qodercli
+RUN pnpm add -g --prod --config.ignore-scripts=false @qoder-ai/qodercli
 
 # QODER CN CLI #################################################################
-RUN pnpm add -g --prod @qodercn-ai/qoderclicn
+RUN pnpm add -g --prod --config.ignore-scripts=false @qodercn-ai/qoderclicn
 
 # kilo code CLI ################################################################
-RUN pnpm add -g --prod @kilocode/cli
+RUN pnpm add -g --prod --config.ignore-scripts=false @kilocode/cli
 
 # oh-my-pi CLI #################################################################
 RUN bun install -g @oh-my-pi/pi-coding-agent
@@ -119,7 +120,7 @@ RUN bun install -g @oh-my-pi/pi-coding-agent
 RUN curl -fsSL https://jcode.sh/install | bash
 
 # qwencode CLI #################################################################
-RUN pnpm add -g --prod @qwen-code/qwen-code
+RUN pnpm add -g --prod --config.ignore-scripts=false @qwen-code/qwen-code
 
 # hermes-agent CLI #############################################################
 # RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
