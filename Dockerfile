@@ -17,6 +17,7 @@ RUN apt-get update && \
         wget \
         curl \
         git \
+        vim \
         ca-certificates \
         gnupg \
         lsb-release \
@@ -108,14 +109,20 @@ RUN npm install -g @kilocode/cli
 # oh-my-pi CLI #################################################################
 RUN bun install -g @oh-my-pi/pi-coding-agent
 
+# jcode CLI ####################################################################
+RUN curl -fsSL https://jcode.sh/install | bash
+
+# qwencode CLI #################################################################
+RUN npm install -g @qwen-code/qwen-code
+
 # hermes-agent CLI #############################################################
-RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+# RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
 # OPENCLAW #####################################################################
 # npm >= 11.16 requires --allow-scripts=openclaw for its lifecycle scripts;
 # older npm versions reject the flag, so fall back to a plain install.
-RUN (npm install -g openclaw@latest --allow-scripts=openclaw || \
-     npm install -g openclaw)
+# RUN (npm install -g openclaw@latest --allow-scripts=openclaw || \
+#      npm install -g openclaw)
 
 # ANTIGRAVITY CLI (GOOGLE) #####################################################
 RUN curl -fsSL https://antigravity.google/cli/install.sh | bash

@@ -43,6 +43,8 @@ Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub & 
 - oh-my-pi CLI (`omp`) - oh-my-pi
 - Hermes Agent CLI (`hermes`) - Nous Research
 - OpenClaw (`openclaw`) - personal AI assistant gateway
+- jcode CLI (`jcode`) - jcode
+- Qwen Code CLI (`qwen`) - Alibaba Qwen
 - Antigravity CLI (`agy`) - Google
 
 **Development tools**

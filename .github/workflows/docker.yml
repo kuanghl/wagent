@@ -3,6 +3,8 @@ name: Docker
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
   schedule: # Minute Hour Date Month Weekday
     - cron: "0 16 1 * *" # Run on the 1st of every month at 16:00 AM UTC +8 --> 0:00 AM CST
 
