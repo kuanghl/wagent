@@ -22,7 +22,7 @@ Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub & 
 - Node.js 24 (NodeSource)
 - Bun (`bun`, `bunx`) - fast JS/TS runtime and package manager
 - Deno (`deno`) - JS/TS runtime with built-in TypeScript
-- pnpm (`pnpm`) - fast, disk-space efficient package manager (used for global CLI installs)
+- npm (`npm`) - Node.js package manager (used for global CLI installs)
 
 **AI coding agents**
 
@@ -66,7 +66,7 @@ docker run \
 
 ## ENV(s)
 
-- `PATH` - Includes `/root/bin`, `/root/.bun/bin`, `/root/.deno/bin`, `/root/.local/share/pnpm` and `/root/.local/bin`
+- `PATH` - Includes `/root/bin`, `/root/.bun/bin`, `/root/.deno/bin` and `/root/.local/bin`
 
 ## Workdir
 
