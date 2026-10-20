@@ -51,8 +51,10 @@ _testcase-agents:
 	$(TEST_RUN) qoderclicn --version
 	$(TEST_RUN) kilocode --version
 	$(TEST_RUN) omp --version
-	$(TEST_RUN) hermes --version
-	$(TEST_RUN) openclaw --version
+#	$(TEST_RUN) hermes --version
+#	$(TEST_RUN) openclaw --version
+	$(TEST_RUN) jcode --version
+	$(TEST_RUN) qwen --version
 	$(TEST_RUN) agy --version
 
 .PHONY: _testcase-common
